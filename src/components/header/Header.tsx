@@ -78,16 +78,16 @@ const Header: React.FC<HeaderProps> = ({ onClick, onToggle }) => {
             </svg>
           </button>
 
-          <Link to="/" className="lg:hidden">
+          <Link to="/https://www.youtube.com/" className="lg:hidden">
             <img
               className="dark:hidden"
-              src="./images/logo/logo.svg"
-              alt="Logo"
+              src="./images/logo/pacman.webp"
+              alt="greyy"
             />
             <img
               className="hidden dark:block"
               src="./images/logo/logo-dark.svg"
-              alt="Logo"
+              alt="blue"
             />
           </Link>
 
