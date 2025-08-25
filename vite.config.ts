@@ -3,7 +3,6 @@ import react from "@vitejs/plugin-react";
 import svgr from "vite-plugin-svgr";
 import { VitePWA } from "vite-plugin-pwa";
 
-// https://vite.dev/config/
 export default defineConfig({
   plugins: [
     react(),
@@ -15,7 +14,7 @@ export default defineConfig({
       },
     }),
     VitePWA({
-      registerType: "autoUpdate", // automatically update service worker
+      registerType: "autoUpdate",
       manifest: {
         name: "TailAdmin Dashboard",
         short_name: "TailAdmin",
@@ -24,16 +23,8 @@ export default defineConfig({
         background_color: "#ffffff",
         theme_color: "#1f2937",
         icons: [
-          {
-            src: "/icon-192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/icon-512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
+          { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
+          { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
         ],
       },
     }),
