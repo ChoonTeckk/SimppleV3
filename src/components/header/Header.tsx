@@ -80,7 +80,7 @@ const Header: React.FC<HeaderProps> = ({ onClick, onToggle }) => {
 
           <Link to="/https://www.youtube.com/" className="lg:hidden">
             <img
-              className="dark:hidden"
+              className="dark:hidden w-48 h-48"
               src="./images/logo/pacman.webp"
               alt="greyy"
             />
