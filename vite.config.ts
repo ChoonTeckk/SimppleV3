@@ -24,21 +24,21 @@ export default defineConfig({
         theme_color: "#1f2937",
         icons: [
           {
-            src: "/icon-192.jpg",
+            src: "/icon-192.png",
             sizes: "192x192",
-            type: "image/jpeg", // Changed from image/jpg to image/png
+            type: "image/png", // Changed from image/jpg to image/png
             purpose: "any maskable"
           },
           {
-            src: "/icon-512.jpg",
+            src: "/icon-512.png",
             sizes: "512x512",
-            type: "image/jpeg", // Changed from image/jpg to image/png
+            type: "image/png", // Changed from image/jpg to image/png
             purpose: "any maskable"
           },
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,png,webp,svg,ico}'], // Cache images
+        globPatterns: ['**/*.{js,css,html,png,jpg,jpeg,webp,svg,ico}'], // Cache images
         runtimeCaching: [
           {
             urlPattern: /\.(?:png|webp|jpg|jpeg|svg)$/,

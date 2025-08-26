@@ -28,12 +28,12 @@ type NavItem = {
 const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
-    name: "Dashboard",
+    name: "Dashboardddddd",
     subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
     icon: <CalenderIcon />,
-    name: "Calendar",
+    name: "Calendared",
     path: "/calendar",
   },
   {
@@ -308,14 +308,14 @@ const AppSidebar: React.FC = () => {
             <>
               <img
                 className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src="/images/logo/pacman.webp"
                 alt="Logo"
-                width={150}
-                height={40}
+                width={100}
+                height={20}
               />
               <img
                 className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
+                src="/images/logo/pacman.webp"
                 alt="Logo"
                 width={150}
                 height={40}

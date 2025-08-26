@@ -761,7 +761,7 @@ span.flatpickr-weekday,
   border: none;
   color: black;
 }
-.fc.fc-media-screen {
+/* .fc.fc-media-screen {
   @apply min-h-screen;
 }
 
@@ -775,4 +775,4 @@ span.flatpickr-weekday,
 
 .simplebar-scrollbar.simplebar-visible:before {
   @apply opacity-100;
-}
+} */

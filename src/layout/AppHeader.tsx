@@ -85,7 +85,7 @@ const AppHeader: React.FC = () => {
 
           <Link to="/" className="lg:hidden">
             <img
-              className="dark:hidden"
+              className="dark:hidden w-12 h-12"
               src="/images/logo/pacman.webp"
               alt="redlalalala"
             />
