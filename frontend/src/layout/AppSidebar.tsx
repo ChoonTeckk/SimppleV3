@@ -41,6 +41,11 @@ const navItems: NavItem[] = [
     name: "User Profile",
     path: "/profile",
   },
+    {
+    icon: <UserCircleIcon />,
+    name: "Test Pwa create users",
+    path: "/pwa",
+  },
   {
     name: "Forms",
     icon: <ListIcon />,
