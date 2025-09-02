@@ -18,13 +18,16 @@ import Blank from "./pages/Blank";
 import AppLayout from "./layout/AppLayout";
 import { ScrollToTop } from "./components/common/ScrollToTop";
 import Home from "./pages/Dashboard/Home";
-import PwaUsers from "./pages/pwa";
+import Pwa from "./pages/pwa";
+// import OfflineNotice from "./components/OfflineNotice";
+import './index.css'; // <-- Tailwind is included here globally
 
 
 export default function App() {
   return (
     <>
       <Router>
+        {/* <OfflineNotice /> */}
         <ScrollToTop />
         <Routes>
           {/* Dashboard Layout */}
@@ -33,7 +36,7 @@ export default function App() {
 
             {/* Others Page */}
             <Route path="/profile" element={<UserProfiles />} />
-            <Route path="/pwa" element={<PwaUsers />} />
+            <Route path="/pwa" element={<Pwa />} />
             <Route path="/calendar" element={<Calendar />} />
             <Route path="/blank" element={<Blank />} />
 

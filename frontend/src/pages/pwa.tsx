@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { getUsers, createUser } from "../services/usersService";
+import OfflineNotice from "../components/OfflineNotice";
+import '../index.css'; // <-- Tailwind is included here globally
 
 interface User {
   id: number;
@@ -13,11 +15,11 @@ export default function UsersPage() {
   const [modalOpen, setModalOpen] = useState(false);
   const [form, setForm] = useState({ name: "", email: "", age: "" });
 
-  // Fetch users from API
+  // Fetch users
   const fetchUsers = async () => {
     try {
       const res = await getUsers();
-      setUsers(res.data); // axios wraps data inside `res.data`
+      setUsers(res.data);
     } catch (err) {
       console.error(err);
     }
@@ -42,7 +44,7 @@ export default function UsersPage() {
       alert("User added successfully!");
       setForm({ name: "", email: "", age: "" });
       setModalOpen(false);
-      fetchUsers(); // refresh table
+      fetchUsers();
     } catch (err: any) {
       console.error(err);
       alert(err.response?.data?.message || "Failed to add user");
@@ -52,6 +54,8 @@ export default function UsersPage() {
   return (
     <div className="p-6 max-w-4xl mx-auto">
       <h1 className="text-3xl font-bold mb-4 text-center">Users</h1>
+
+
 
       {/* Add User Button */}
       <div className="text-right mb-4">
@@ -64,69 +68,56 @@ export default function UsersPage() {
       </div>
 
       {/* Modal */}
-  {modalOpen && (
-    <div
-      className={`fixed inset-0 z-[100000] flex items-center justify-center transition-opacity duration-300`}
-      style={{
-        backgroundColor: "rgba(0,0,0,0.3)", // slightly dark
-      }}
-    >
-      {/* Prevent click through */}
-      <div
-        className="absolute inset-0"
-        onClick={() => setModalOpen(false)}
-      ></div>
-
-      <div
-        className={`bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative transform transition-transform duration-300 ${
-          modalOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-        }`}
-      >
-        <button
-          className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
-          onClick={() => setModalOpen(false)}
+      {modalOpen && (
+        <div
+          className="fixed inset-0 z-[100000] flex items-center justify-center bg-black bg-opacity-30"
         >
-          ✖
-        </button>
-        <h2 className="text-xl font-bold mb-4">Add User</h2>
-        <form onSubmit={handleSubmit} className="space-y-3">
-          <input
-            type="text"
-            name="name"
-            placeholder="Name"
-            value={form.name}
-            onChange={handleChange}
-            className="border px-2 py-1 rounded w-full"
-            required
-          />
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={form.email}
-            onChange={handleChange}
-            className="border px-2 py-1 rounded w-full"
-            required
-          />
-          <input
-            type="number"
-            name="age"
-            placeholder="Age"
-            value={form.age}
-            onChange={handleChange}
-            className="border px-2 py-1 rounded w-full"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-green-500 text-white px-4 py-2 rounded w-full"
-          >
-            Save
-          </button>
-        </form>
-      </div>
-    </div>
-  )}
+          <div className="bg-white rounded-lg shadow-lg p-6 w-full max-w-md relative transform transition-transform duration-300">
+            <button
+              className="absolute top-2 right-2 text-gray-500 hover:text-gray-800"
+              onClick={() => setModalOpen(false)}
+            >
+              ✖
+            </button>
+            <h2 className="text-xl font-bold mb-4">Add User</h2>
+            <form onSubmit={handleSubmit} className="space-y-3">
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={form.name}
+                onChange={handleChange}
+                className="border px-2 py-1 rounded w-full"
+                required
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={form.email}
+                onChange={handleChange}
+                className="border px-2 py-1 rounded w-full"
+                required
+              />
+              <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                value={form.age}
+                onChange={handleChange}
+                className="border px-2 py-1 rounded w-full"
+                required
+              />
+              <button
+                type="submit"
+                className="bg-green-500 text-white px-4 py-2 rounded w-full"
+              >
+                Save
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
 
       {/* Users Table */}
       <table className="w-full border-collapse border border-gray-300 mt-6">
@@ -156,6 +147,8 @@ export default function UsersPage() {
           )}
         </tbody>
       </table>
+            {/* ✅ Toast Notification */}
+      <OfflineNotice />
     </div>
   );
 }

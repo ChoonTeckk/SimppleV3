@@ -27,38 +27,38 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <GridIcon />,
-    name: "Dashboardddddd",
+    icon: <GridIcon className="w-5 h-5" />,
+    name: "Dashboard",
     subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
-    icon: <CalenderIcon />,
-    name: "Calendared",
+    icon: <CalenderIcon className="w-5 h-5" />,
+    name: "Calendar",
     path: "/calendar",
   },
   {
-    icon: <UserCircleIcon />,
+    icon: <UserCircleIcon className="w-5 h-5" />,
     name: "User Profile",
     path: "/profile",
   },
     {
-    icon: <UserCircleIcon />,
-    name: "Test Pwa create users",
+    icon: <UserCircleIcon className="w-5 h-5" />,
+    name: "Test Pwa create user",
     path: "/pwa",
   },
   {
     name: "Forms",
-    icon: <ListIcon />,
+    icon: <ListIcon className="w-5 h-5" />,
     subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
   },
   {
     name: "Tables",
-    icon: <TableIcon />,
+    icon: <TableIcon className="w-5 h-5" />,
     subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
   {
     name: "Pages",
-    icon: <PageIcon />,
+    icon: <PageIcon className="w-5 h-5" />,
     subItems: [
       { name: "Blank Page", path: "/blank", pro: false },
       { name: "404 Error", path: "/error-404", pro: false },
@@ -313,14 +313,14 @@ const AppSidebar: React.FC = () => {
             <>
               <img
                 className="dark:hidden"
-                src="/images/logo/pacman.webp"
+                src="/images/logo/simpple.png"
                 alt="Logo"
-                width={100}
-                height={20}
+                width={160}
+                height={80}
               />
               <img
                 className="hidden dark:block"
-                src="/images/logo/pacman.webp"
+                src="/images/logo/simpple.png"
                 alt="Logo"
                 width={150}
                 height={40}
