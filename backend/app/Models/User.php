@@ -44,7 +44,7 @@ class User extends Model
      */
     protected $casts = [
         // add casts if needed, e.g. age as integer
-        'age' => 'integer',
+        // 'age' => 'integer',
     ];
 
         public $timestamps = false;

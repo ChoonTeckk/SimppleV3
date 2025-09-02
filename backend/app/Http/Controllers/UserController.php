@@ -14,7 +14,9 @@ class UserController extends Controller
     {
         try {
             $users = User::all();
+            // dd($users);
             return response()->json($users);
+            
         } catch (\Exception $e) {
             return response()->json([
                 'error' => 'Failed to fetch users',
