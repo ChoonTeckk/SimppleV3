@@ -25,18 +25,18 @@ export default function UserInfoCard() {
                 First Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Musharof
+                {U}
               </p>
             </div>
 
-            <div>
+            {/* <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">
                 Last Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
                 Chowdhury
               </p>
-            </div>
+            </div> */}
 
             <div>
               <p className="mb-2 text-xs leading-normal text-gray-500 dark:text-gray-400">

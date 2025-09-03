@@ -7,9 +7,9 @@ use App\Models\User;
 
 class UserController extends Controller
 {
-    /**
-     * Get all users.
-     */
+    
+    //   Get all users
+     
     public function index()
     {
         try {

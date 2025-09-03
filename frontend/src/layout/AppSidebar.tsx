@@ -43,8 +43,8 @@ const navItems: NavItem[] = [
   },
     {
     icon: <UserCircleIcon className="w-5 h-5" />,
-    name: "Test Pwa create user",
-    path: "/pwa",
+    name: "Create Clients",
+    path: "/Clients",
   },
   {
     name: "Forms",
