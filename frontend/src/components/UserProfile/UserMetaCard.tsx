@@ -7,7 +7,17 @@ import { useEffect, useState } from "react";
 
 export default function UserMetaCard() {
   const { isOpen, openModal, closeModal } = useModal();
-  const [user, setUser] = useState(null);
+const [user, setUser] = useState<User | null>(null);
+
+
+  type User = {
+    id: number;
+    name: string;
+    email: string;
+    age: number;
+    created_at: string;
+    updated_at: string;
+  };
 
   useEffect (() => {
     fetch("http://localhost:8000/api/users")
