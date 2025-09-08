@@ -50,6 +50,6 @@ class Task extends Model
         // 'age' => 'integer',
     ];
 
-        public $timestamps = false;
+        public $timestamps = true;
 
 }

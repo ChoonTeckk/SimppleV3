@@ -173,8 +173,26 @@ export default function TasksPage() {
             <tr key={task.id}>
               <td className="border px-4 py-2">{task.id}</td>
               <td className="border px-4 py-2">{task.name}</td>
-              <td className="border px-4 py-2">{task.priority}</td>
-              <td className="border px-4 py-2">{task.status}</td>
+              {/* <td className="border px-4 py-2">{task.priority}</td> */}
+              {/* <td className="border px-4 py-2">{task.status}</td> */}
+              <td
+                className={`border px-4 py-2 font-semibold
+                  ${task.priority === "High" ? "text-red-500" : ""}
+                  ${task.priority === "Medium" ? "text-orange-500" : ""}
+                  ${task.priority === "Low" ? "text-blue-500" : ""}
+                `}
+              >
+                {task.priority}
+              </td>
+              <td
+                className={`border px-4 py-2 font-semibold
+                  ${task.status === "Pending" ? "text-yellow-500" : ""}
+                  ${task.status === "In Progress" ? "text-blue-500" : ""}
+                  ${task.status === "Completed" ? "text-green-600" : ""}
+                `}
+              >
+                {task.status}
+              </td>
               <td className="border px-4 py-2">
                   {task.due_date ? new Date(task.due_date + "T00:00:00").toLocaleDateString() : ""}
               </td>
