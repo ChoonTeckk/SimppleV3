@@ -41,10 +41,15 @@ const navItems: NavItem[] = [
     name: "User Profile",
     path: "/profile",
   },
-    {
+  {
     icon: <UserCircleIcon className="w-5 h-5" />,
     name: "Create Clients",
     path: "/Clients",
+  },
+  {
+    icon: <UserCircleIcon className="w-5 h-5" />,
+    name: "Create Task",
+    path: "/Tasks",
   },
   {
     name: "Forms",

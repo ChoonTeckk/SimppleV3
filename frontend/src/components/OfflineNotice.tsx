@@ -7,7 +7,7 @@ export default function OfflineNotice() {
     const handleOnline = () => {
       console.log("Status: online ✅");
       setToast("✅ Back online - Connection restored");
-      setTimeout(() => setToast(null), 3000); // hide after 3s
+      setTimeout(() => setToast(null), 3000); // the effect will hide after 3 seconds
     };
 
     const handleOffline = () => {

@@ -8,7 +8,7 @@ use App\Models\Client;
 class ClientController extends Controller
 {
     
-    //   Get all users
+    //   Get all clients
      
     public function index()
     {
@@ -34,14 +34,16 @@ class ClientController extends Controller
             // Validate incoming request
             $request->validate([
                 'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                'phone' => 'required|integer|min:0',
+                'email' => 'required|email|unique:clients,email',
+                'phone' => 'required|numeric|min:0',
                 'role_name' => 'required|string|max:255',
                 'role_id' => 'required|integer|min:0',
                 'city' => 'required|string|max:255',
                 'state' => 'required|string|max:255',
-                'postal_code' => 'required|int|min:0',
-                'country' => 'required|string|max:255'
+                'postal_code' => 'required|numeric|min:0',
+                'country' => 'required|string|max:255',
+                'image' => 'nullable|string|max:255'  // optional image field
+
             ]);
 
             $client = Client::create([
@@ -53,7 +55,8 @@ class ClientController extends Controller
                 'city' => $request->city,
                 'state' => $request->state,
                 'postal_code' => $request->postal_code,
-                'country' => $request->country
+                'country' => $request->country,
+                'image' => $request->image // handle optional image field
             ]);
 
             return response()->json($client, 201);

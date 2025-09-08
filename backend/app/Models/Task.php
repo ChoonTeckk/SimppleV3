@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+class Task extends Model
 {
     use HasFactory;
 
@@ -15,7 +15,7 @@ class Client extends Model
      *
      * @var string
      */
-    protected $table = 'clients';
+    protected $table = 'tasks';
 
     /**
      * The attributes that are mass assignable.
@@ -24,15 +24,12 @@ class Client extends Model
      */
     protected $fillable = [
         'name',
-        'email',
-        'phone',
-        'role_name',
-        'role_id',
-        'city',
-        'state',
-        'postal_code',
-        'country',
+        'priority',
+        'status',
+        'due_date',
+        
     ];
+    
 
     /**
      * The attributes that should be hidden for serialization.

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import { getUsers, createUser } from "../services/usersService";
-import { getClients, createClient } from "../services/usersService";
+import { getClients, createClient } from "../services/Service";
 import OfflineNotice from "../components/OfflineNotice";
 import '../index.css';
 
@@ -21,7 +20,7 @@ interface Client {
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([]);
   const [modalOpen, setModalOpen] = useState(false);
-  const [form, setForm] = useState({ name: "", email: "", phone: "", role_name: "", role_id: "", city: "", state: "", postal_code: "", country: "", image: "" });
+  const [form, setForm] = useState({ name: "", email: "", phone: "", role_name: "", role_id: 0, city: "", state: "", postal_code: "", country: "", image: "" });
 
   // Fetch users
   const fetchClients = async () => {
@@ -57,7 +56,7 @@ export default function ClientsPage() {
         image: form.image
       });
       alert("Client added successfully!");
-      setForm({ name: "", email: "",  phone: "", role_name: "", role_id: "", city: "", state: "", postal_code: "", country: "", image: ""});
+      setForm({ name: "", email: "",  phone: "", role_name: "", role_id: 0, city: "", state: "", postal_code: "", country: "", image: ""});
       setModalOpen(false);
       fetchClients();
     } catch (err: any) {
@@ -123,15 +122,34 @@ export default function ClientsPage() {
                 className="border px-2 py-1 rounded w-full"
                 required
               />
-              <input
-                type="text"
+              <select
                 name="role_name"
-                placeholder="role name"
                 value={form.role_name}
-                onChange={handleChange}
+                onChange={(e) => {
+                  const selectedRole = e.target.value;
+                  const roleMap: Record<string, number> = {
+                    "Manager": 1,
+                    "Super Admin": 2,
+                    "Admin": 3,
+                    "Staff": 4,
+                    "User": 5,
+                  };
+                  setForm({
+                    ...form,
+                    role_name: selectedRole,
+                    role_id: roleMap[selectedRole] || 0, // auto set role_id
+                  });
+                }}
                 className="border px-2 py-1 rounded w-full"
                 required
-              />
+              >
+                <option value="">Select Role</option>
+                <option value="Manager">Manager</option>
+                <option value="Super Admin">Super Admin</option>
+                <option value="Admin">Admin</option>
+                <option value="Staff">Staff</option>
+                <option value="User">User</option>
+              </select>
               <input
                 type="text"
                 name="city"
@@ -197,11 +215,13 @@ export default function ClientsPage() {
             <th className="border px-4 py-2">Email</th>
             <th className="border px-4 py-2">Phone</th>
             <th className="border px-4 py-2">Role name</th>
+            <th className="border px-4 py-2">Role id</th>
             <th className="border px-4 py-2">City</th>
             <th className="border px-4 py-2">State</th>
             <th className="border px-4 py-2">Postal code</th>
             <th className="border px-4 py-2">Country</th>
             <th className="border px-4 py-2">Image</th>
+            <th className="border px-4 py-2">Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -212,6 +232,7 @@ export default function ClientsPage() {
               <td className="border px-4 py-2">{client.email}</td>
               <td className="border px-4 py-2">{client.phone}</td>
               <td className="border px-4 py-2">{client.role_name}</td>
+              <td className="border px-4 py-2">{client.role_id}</td>
               <td className="border px-4 py-2">{client.city}</td>
               <td className="border px-4 py-2">{client.state}</td>
               <td className="border px-4 py-2">{client.postal_code}</td>
@@ -222,7 +243,7 @@ export default function ClientsPage() {
           ))}
           {clients.length === 0 && (
             <tr>
-              <td colSpan={4} className="text-center py-4 text-gray-500">
+              <td colSpan={11} className="py-4 text-gray-500 text-center">
                 No Clients found.
               </td>
             </tr>
