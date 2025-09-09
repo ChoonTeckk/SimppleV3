@@ -4,6 +4,8 @@ import OfflineNotice from "../components/OfflineNotice";
 import "react-datepicker/dist/react-datepicker.css";
 import "../index.css";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
+
 
 
 interface Task {
@@ -50,7 +52,7 @@ export default function TasksPage() {
         name: form.name,
         priority: form.priority,
         status: form.status,
-        due_date: form.due_date, 
+        due_date: form.due_date 
       });
       alert("Task added successfully!");
       setForm({ name: "", priority: "", status: "", due_date: "" });
@@ -136,15 +138,35 @@ export default function TasksPage() {
                 required
               /> */}
 
-            <DatePicker
+            {/* <DatePicker
               selected={form.due_date ? new Date(form.due_date) : null}
               onChange={(date: Date | null) =>
-                setForm({ ...form, due_date: date ? date.toISOString().split("T")[0] : "" })
+                setForm({ ...form, 
+                due_date: date ? date.toISOString().split("T")[0] : "" 
+                })
               }
+                                showTimeSelect      
+                timeFormat="HH:mm"
+                timeIntervals={30}
               className="border px-2 py-1 rounded w-full"
               placeholderText="Select due date"
               dateFormat="yyyy-MM-dd"
-              />    
+              />     */}
+              <DatePicker
+                selected={form.due_date ? new Date(form.due_date) : null}
+                onChange={(date: Date | null) =>
+                  setForm({
+                    ...form,
+                    due_date: date ? date.toISOString().slice(0, 19).replace("T", " ") : ""
+                  })
+                }
+                showTimeSelect      
+                timeFormat="HH:mm"
+                timeIntervals={30} //this code allows the user to select time 
+                className="border px-2 py-1 rounded w-full"
+                placeholderText="Select due date and time"
+                dateFormat="yyyy-MM-dd HH:mm"
+              />
               <button
                 type="submit"
                 className="bg-green-500 text-white px-4 py-2 rounded w-full"
@@ -194,9 +216,10 @@ export default function TasksPage() {
                 {task.status}
               </td>
               <td className="border px-4 py-2">
-                  {task.due_date ? new Date(task.due_date + "T00:00:00").toLocaleDateString() : ""}
+                  {/* {task.due_date ? new Date(task.due_date + "T00:00:00").toLocaleDateString() : ""} format mm/dd/yyyy */}
+                  {task.created_at ? new Date(task.created_at).toISOString().split("T")[0] : ""}
               </td>
-              <td className="border px-4 py-2">{task.due_date}</td>
+              <td className="border px-4 py-2">{task.due_date ? new Date(task.due_date).toISOString().slice(0, 16).replace("T", " "): ""}</td>
               {/* <td className="border px-4 py-2">{new Date(task.due_date).toLocaleDateString()}</td> */}
             </tr>
           ))}
