@@ -4,6 +4,7 @@ import OfflineNotice from "../components/OfflineNotice";
 import "react-datepicker/dist/react-datepicker.css";
 import "../index.css";
 import DatePicker from "react-datepicker";
+import useTaskReminder from "../hooks/useTaskReminder";
 
 
 
@@ -39,6 +40,7 @@ export default function TasksPage() {
   useEffect(() => {
     fetchTasks();
   }, []);
+  useTaskReminder(tasks);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -153,19 +155,44 @@ export default function TasksPage() {
               />     */}
               <DatePicker
                 selected={form.due_date ? new Date(form.due_date) : null}
-                onChange={(date: Date | null) =>
-                  setForm({
-                    ...form,
-                    due_date: date ? date.toISOString().slice(0, 19).replace("T", " ") : ""
-                  })
-                }
-                showTimeSelect      
+                onChange={(date: Date | null) => {
+                  if (date) {
+                    // Format to YYYY-MM-DD HH:mm in Malaysia timezone
+                    const options: Intl.DateTimeFormatOptions = {
+                      timeZone: "Asia/Kuala_Lumpur",
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                      hour12: false,
+                    };
+
+                    const parts = new Intl.DateTimeFormat("en-CA", options).formatToParts(date);
+                    const year = parts.find((p) => p.type === "year")?.value;
+                    const month = parts.find((p) => p.type === "month")?.value;
+                    const day = parts.find((p) => p.type === "day")?.value;
+                    const hour = parts.find((p) => p.type === "hour")?.value;
+                    const minute = parts.find((p) => p.type === "minute")?.value;
+
+                    const formatted = `${year}-${month}-${day} ${hour}:${minute}`;
+
+                    setForm({
+                      ...form,
+                      due_date: formatted,
+                    });
+                  } else {
+                    setForm({ ...form, due_date: "" });
+                  }
+                }}
+                showTimeSelect
                 timeFormat="HH:mm"
-                timeIntervals={30} //this code allows the user to select time 
+                timeIntervals={1}
                 className="border px-2 py-1 rounded w-full"
                 placeholderText="Select due date and time"
                 dateFormat="yyyy-MM-dd HH:mm"
               />
+
               <button
                 type="submit"
                 className="bg-green-500 text-white px-4 py-2 rounded w-full"
@@ -218,7 +245,19 @@ export default function TasksPage() {
                   {/* {task.due_date ? new Date(task.due_date + "T00:00:00").toLocaleDateString() : ""} format mm/dd/yyyy */}
                   {task.created_at ? new Date(task.created_at).toISOString().split("T")[0] : ""}
               </td>
-              <td className="border px-4 py-2">{task.due_date ? new Date(task.due_date).toISOString().slice(0, 16).replace("T", " "): ""}</td>
+              <td className="border px-4 py-2">
+                {/* {task.due_date ? new Date(task.due_date).toISOString().slice(0, 16).replace("T", " "): ""} */}
+                {task.due_date
+                  ? new Date(task.due_date).toLocaleString("en-MY", {
+                      timeZone: "Asia/Kuala_Lumpur",
+                      year: "numeric",
+                      month: "2-digit",
+                      day: "2-digit",
+                      hour: "2-digit",
+                      minute: "2-digit",
+                    })
+                  : ""}
+              </td>
               {/* <td className="border px-4 py-2">{new Date(task.due_date).toLocaleDateString()}</td> */}
             </tr>
           ))}
