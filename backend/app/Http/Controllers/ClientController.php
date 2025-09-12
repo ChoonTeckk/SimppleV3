@@ -10,7 +10,7 @@ class ClientController extends Controller
     
     //   Get all clients
      
-    public function index()
+    public function getClients()
     {
         try {
             $Clients = Client::all();
@@ -28,7 +28,7 @@ class ClientController extends Controller
     /**
      * Add a new user.
      */
-    public function store(Request $request)
+    public function storeClients(Request $request)
     {
         try {
             // Validate incoming request

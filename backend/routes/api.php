@@ -13,12 +13,12 @@ use App\Http\Controllers\TaskController;
 
 
 
-Route::get('/users', [UserController::class, 'index']);        
-Route::post('/users', [UserController::class, 'store']);      
-Route::get('/clients', [ClientController::class, 'index']);      
-Route::post('/clients', [ClientController::class, 'store']);     
-Route::get('/tasks', [TaskController::class, 'index']);     
-Route::post('/tasks', [TaskController::class, 'store']);     
+// Route::get('/users', [UserController::class, 'index']);        
+// Route::post('/users', [UserController::class, 'store']);      
+Route::get('/clients', [ClientController::class, 'getClients']);      
+Route::post('/clients', [ClientController::class, 'storeClients']);     
+Route::get('/tasks', [TaskController::class, 'getTasks']);     
+Route::post('/tasks', [TaskController::class, 'storeTasks']);     
 // Route::get('/users/{id}', [UserController::class, 'show']);   // Get a single user
 // Route::put('/users/{id}', [UserController::class, 'update']); // Update a user
 // Route::delete('/users/{id}', [UserController::class, 'destroy']); // Delete a user

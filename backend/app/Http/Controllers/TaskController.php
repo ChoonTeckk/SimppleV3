@@ -9,7 +9,7 @@ class TaskController extends Controller
 {
     
      
-    public function index()
+    public function getTasks()
     {
         try {
             $users = Task::all();
@@ -26,7 +26,7 @@ class TaskController extends Controller
     /**
      * Add a new user.
      */
-    public function store(Request $request)
+    public function storeTasks(Request $request)
     {
         try {
             // Validate incoming request
